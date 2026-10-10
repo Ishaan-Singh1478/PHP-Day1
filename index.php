@@ -31,7 +31,7 @@ class students
         return $this->marks;
     }
 
-    // Validate marks
+    
     public function setMarks($marks)
     {
         if (is_numeric($marks) && $marks >= 0 && $marks <= 100)
@@ -74,10 +74,18 @@ class students
     }
 }
 
+
 $student = null;
 $error = "";
 
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $name = trim($_POST["name"]);
+    $roll = $_POST["roll"];
+    $marks = $_POST["marks"];
+
+    $student = new students($name, $roll, $marks);
+}
 
 ?>
 
