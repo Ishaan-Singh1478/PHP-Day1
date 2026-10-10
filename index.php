@@ -7,14 +7,12 @@ class students
     private $roll;
     private $marks;
 
-    
     public function __construct($name, $roll, $marks)
     {
         $this->name = $name;
         $this->roll = $roll;
         $this->setMarks($marks);
     }
-
 
     public function getName()
     {
@@ -31,7 +29,6 @@ class students
         return $this->marks;
     }
 
-    
     public function setMarks($marks)
     {
         if (is_numeric($marks) && $marks >= 0 && $marks <= 100)
@@ -43,7 +40,6 @@ class students
             $this->marks = null;
         }
     }
-
 
     public function getGrade()
     {
@@ -74,77 +70,26 @@ class students
     }
 }
 
+echo "Student Management System\n";
 
-$student = null;
-$error = "";
+echo "Enter student name: ";
+$name = trim(fgets(STDIN));
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    $name = trim($_POST["name"]);
-    $roll = $_POST["roll"];
-    $marks = $_POST["marks"];
+echo "Enter roll number: ";
+$roll = trim(fgets(STDIN));
 
-    $student = new students($name, $roll, $marks);
-}
+echo "Enter marks (0-100): ";
+$marks = trim(fgets(STDIN));
 
-?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Management System</title>
-</head>
+$student = new students($name, $roll, $marks);
 
-<body>
 
-<h2>Student Management System</h2>
+echo "\nStudent Details\n";
 
-<form method="POST">
-
-    <label>Student Name:</label>
-    <input type="text" name="name" required>
-    <br><br>
-
-    <label>Roll Number:</label>
-    <input type="number" name="roll" min="1" step="1" required>
-    <br><br>
-
-    <label>Marks:</label>
-    <input type="number" name="marks" min="0" max="100"
-           step="any" required>
-    <br><br>
-
-    <button type="submit">Submit Details</button>
-
-</form>
-
-<hr>
-
-<?php
-
-if ($error != "")
-{
-    echo htmlspecialchars($error) . "<br>";
-}
-
-if ($student !== null)
-{
-    echo "<h3>Student Details</h3>";
-
-    echo "Name: " .
-        htmlspecialchars($student->getName()) . "<br>";
-
-    echo "Roll Number: " .
-        $student->getRoll() . "<br>";
-
-    echo "Marks: " .
-        $student->getMarks() . "<br>";
-
-    echo "Grade: " .
-        $student->getGrade() . "<br>";
-}
+echo "Name: " . $student->getName() . "\n";
+echo "Roll Number: " . $student->getRoll() . "\n";
+echo "Marks: " . $student->getMarks() . "\n";
+echo "Grade: " . $student->getGrade() . "\n";
 
 ?>
-
-</body>
-</html>
