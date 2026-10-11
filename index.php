@@ -1,4 +1,4 @@
-
+```php
 <?php
 
 class students
@@ -72,24 +72,31 @@ class students
 
 echo "Student Management System\n";
 
-echo "Enter student name: ";
-$name = trim(fgets(STDIN));
+$choice = "yes";
 
-echo "Enter roll number: ";
-$roll = trim(fgets(STDIN));
+while ($choice == "yes")
+{
+    echo "\nEnter student name: ";
+    $name = trim(fgets(STDIN));
 
-echo "Enter marks (0-100): ";
-$marks = trim(fgets(STDIN));
+    echo "Enter roll number: ";
+    $roll = trim(fgets(STDIN));
 
+    echo "Enter marks (0-100): ";
+    $marks = trim(fgets(STDIN));
 
-$student = new students($name, $roll, $marks);
+    $student = new students($name, $roll, $marks);
 
+    echo "\nStudent Details\n";
+    echo "Name: " . $student->getName() . "\n";
+    echo "Roll Number: " . $student->getRoll() . "\n";
+    echo "Marks: " . $student->getMarks() . "\n";
+    echo "Grade: " . $student->getGrade() . "\n";
 
-echo "\nStudent Details\n";
+    echo "\nDo you want to enter another student? (yes/no): ";
+    $choice = strtolower(trim(fgets(STDIN)));
+}
 
-echo "Name: " . $student->getName() . "\n";
-echo "Roll Number: " . $student->getRoll() . "\n";
-echo "Marks: " . $student->getMarks() . "\n";
-echo "Grade: " . $student->getGrade() . "\n";
+echo "\nStudent Management System Closed.\n";
 
 ?>
